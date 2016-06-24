@@ -48,7 +48,7 @@ function getStyleUrls(contents) {
 }
 
 //
-// test
+// test follows
 //
 var templateUrls = getTemplateUrls(`
   ...

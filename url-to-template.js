@@ -1,6 +1,16 @@
 "use strict";
 var assert = require('assert');
 
+module.exports = {
+  getTemplateUrl: getTemplateUrls,
+  getStyleUrls:   getStyleUrls
+}
+
+/**
+ * parse contents and returns templateUrls in contents 
+ * e.g. [{templateUrl: 'templateUrl: "A"', templatePath: 'A'}, ...]
+ * It also handles multiple occurences
+ */
 function getTemplateUrls(contents) {
   let TEMPLATE_URL_RE = /templateUrl\s*:\s*['"`](.*?)['"`]/gm;
   let matches, templateUrls = [];
@@ -14,6 +24,11 @@ function getTemplateUrls(contents) {
   return templateUrls;
 }
 
+/**
+ * parse contents and returns styleUrls in contents 
+ * e.g. [{styleUrls: 'styleUrls: ["A"]', stylePaths: ['A']}, ...]
+ * It also handles multiple occurences
+ */
 function getStyleUrls(contents) {
   let STYLE_URLS_RE = /styleUrls\s*:\s*(\[[^](.[^]*?)\])/gm;
   let matches, styleUrls = [];

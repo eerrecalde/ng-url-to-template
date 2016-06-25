@@ -1,10 +1,32 @@
 "use strict";
 var assert = require('assert');
+var fs = require('fs');
+var path = require('path');
 
-module.exports = {
-  getTemplateUrl: getTemplateUrls,
-  getStyleUrls:   getStyleUrls
-}
+module.exports = function(fileName) {
+  let dirName = path.dirname(fileName);
+
+  let contents = fs.readFileSync(fileName, 'utf-8');
+  let newContents = contents;
+  
+  let templateUrls =  getTemplateUrls(contents);
+  templateUrls.forEach( el => {
+    let templateFileName = path.join(dirName, el.templatePath);
+    let templateContents = fs.readFileSync(templateFileName, 'utf-8');
+    newContents = newContents.replace(el.templateUrl, `template: \`${templateContents}\``);
+  });
+
+  let styleUrls = getStyleUrls(contents);
+  styleUrls.forEach( el => {
+    let styleContents = el.stylePaths.map(stylePath => {
+      let styleFileName = path.join(dirName, stylePath);
+      return '\`' + fs.readFileSync(styleFileName, 'utf-8').replace(/\n/g,' ') + '\`';
+    });
+    newContents = newContents.replace(el.styleUrls, `styles: [${styleContents.join(',')}]`);
+  });
+  
+  return newContents;
+};
 
 /**
  * parse contents and returns templateUrls in contents 

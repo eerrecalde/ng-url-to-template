@@ -1,0 +1,25 @@
+{
+  "name": "ng2-inline-template",
+  "version": "0.1.0",
+  "description": "Convert templateUrl, scriptUrls to template and scritps",
+  "main": "index.js",
+  "bin": {
+    "ng2inline": "bin/ng2inline"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsvalley/ng2-inline-template.git"
+  },
+  "author": "allenhwkim@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jsvalley/ng2-inline-template/issues"
+  },
+  "homepage": "https://github.com/jsvalley/ng2-inline-template#readme",
+  "dependencies": {
+    "glob": "^7.0.5",
+    "mkdirp": "^0.5.1",
+    "yargs": "^4.7.1"
+  }
+}

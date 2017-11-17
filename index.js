@@ -11,9 +11,10 @@ module.exports = function(fileName) {
   
   let templateUrls =  getTemplateUrls(contents);
   templateUrls.forEach( el => {
+    let equalOrColon = el.templateUrl.indexOf('=') > -1 ? ' =' : ':';
     let templateFileName = path.join(dirName, el.templatePath);
     let templateContents = fs.readFileSync(templateFileName, 'utf-8');
-    newContents = newContents.replace(el.templateUrl, `template: \`${templateContents}\``);
+    newContents = newContents.replace(el.templateUrl, `template${equalOrColon} \`${templateContents}\``);
   });
 
   let styleUrls = getStyleUrls(contents);
@@ -34,7 +35,7 @@ module.exports = function(fileName) {
  * It also handles multiple occurences
  */
 function getTemplateUrls(contents) {
-  let TEMPLATE_URL_RE = /templateUrl\s*:\s*['"`](.*?)['"`]/gm;
+  let TEMPLATE_URL_RE = /templateUrl\s*[:|=]\s*['"`](.*?)['"`]/gm;
   let matches, templateUrls = [];
 
   while(matches = TEMPLATE_URL_RE.exec(contents) ) {

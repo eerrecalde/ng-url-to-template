@@ -9,7 +9,7 @@ comp.restrict = 'E';
 ...
 ```
 
-Replaces `templateUrl` and `styleUrls` in Angular1 or Angular2 components/directives `template` and `styles`.
+Replaces `templateUrl` and `styleUrls` in Angular1 or Angular2 components/directives into `template` and `styles`.
 
 ## Install
 

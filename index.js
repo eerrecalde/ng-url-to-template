@@ -8,12 +8,13 @@ module.exports = function(fileName) {
 
   let contents = fs.readFileSync(fileName, 'utf-8');
   let newContents = contents;
-  
+
   let templateUrls =  getTemplateUrls(contents);
   templateUrls.forEach( el => {
+    let equalOrColon = el.templateUrl.indexOf('=') > -1 ? ' =' : ':';
     let templateFileName = path.join(dirName, el.templatePath);
     let templateContents = fs.readFileSync(templateFileName, 'utf-8');
-    newContents = newContents.replace(el.templateUrl, `template: \`${templateContents}\``);
+    newContents = newContents.replace(el.templateUrl, `template${equalOrColon} \`${templateContents}\``);
   });
 
   let styleUrls = getStyleUrls(contents);
@@ -24,17 +25,17 @@ module.exports = function(fileName) {
     });
     newContents = newContents.replace(el.styleUrls, `styles: [${styleContents.join(',')}]`);
   });
-  
+
   return newContents;
 };
 
 /**
- * parse contents and returns templateUrls in contents 
+ * parse contents and returns templateUrls in contents
  * e.g. [{templateUrl: 'templateUrl: "A"', templatePath: 'A'}, ...]
  * It also handles multiple occurences
  */
 function getTemplateUrls(contents) {
-  let TEMPLATE_URL_RE = /templateUrl\s*:\s*['"`](.*?)['"`]/gm;
+  let TEMPLATE_URL_RE = /templateUrl\s*[:|=]\s*['"`](.*?)['"`]/gm;
   let matches, templateUrls = [];
 
   while(matches = TEMPLATE_URL_RE.exec(contents) ) {
@@ -47,7 +48,7 @@ function getTemplateUrls(contents) {
 }
 
 /**
- * parse contents and returns styleUrls in contents 
+ * parse contents and returns styleUrls in contents
  * e.g. [{styleUrls: 'styleUrls: ["A"]', stylePaths: ['A']}, ...]
  * It also handles multiple occurences
  */

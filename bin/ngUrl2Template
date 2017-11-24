@@ -15,7 +15,7 @@ var argv = require('yargs')
     .help('h', 'help')
     .argv;
 
-var ng2inline = require(__dirname + '/../index.js');
+var ngUrl2Template = require(__dirname + '/../index.js');
 var outDir = argv.outDir;
 var globStr = argv._[0];
 var baseDir = globStr.match(/([^\*]+)\*/)[1].replace(/\/$/,'');
@@ -23,7 +23,7 @@ var baseDir = globStr.match(/([^\*]+)\*/)[1].replace(/\/$/,'');
 glob(globStr, function (error, fileNames) {
   fileNames.forEach(fileName => {
     let outputPath = fileName.replace(baseDir, outDir);
-    let newContents = ng2inline(fileName);
+    let newContents = ngUrl2Template(fileName);
     mkdirp(path.dirname(outputPath), function (err) {
       if (err) console.error(err)
       fs.writeFileSync(outputPath, newContents);

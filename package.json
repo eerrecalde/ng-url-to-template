@@ -1,22 +1,22 @@
 {
-  "name": "ng2-inline-template",
-  "version": "0.1.1",
+  "name": "ng-url-to-template",
+  "version": "0.1.2",
   "description": "Convert templateUrl, scriptUrls to template and scritps",
   "main": "index.js",
   "bin": {
-    "ng2inline": "bin/ng2inline"
+    "ng2inline": "bin/ngUrl2Template"
   },
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jsvalley/ng2-inline-template.git"
+    "url": "git+https://github.com/eerrecalde/ng-url-to-template.git"
   },
-  "author": "allenhwkim@gmail.com",
+  "author": "eerrecalde@gmail.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jsvalley/ng2-inline-template/issues"
+    "url": "https://github.com/eerrecalde/ng-url-to-template/issues"
   },
-  "homepage": "https://github.com/jsvalley/ng2-inline-template#readme",
+  "homepage": "https://github.com/eerrecalde/ng-url-to-template#readme",
   "dependencies": {
     "glob": "^7.0.5",
     "mkdirp": "^0.5.1",

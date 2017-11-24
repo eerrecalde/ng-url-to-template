@@ -4,7 +4,7 @@
   "description": "Convert templateUrl, scriptUrls to template and scritps",
   "main": "index.js",
   "bin": {
-    "ng2inline": "bin/ngUrl2Template"
+    "ngUrl2Template": "bin/ngUrl2Template"
   },
   "scripts": {},
   "repository": {

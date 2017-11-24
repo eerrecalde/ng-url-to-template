@@ -24,11 +24,11 @@ Replaces `templateUrl` and `styleUrls` in Angular1 or Angular2 components/direct
 ### In a node module
 
     var ngUrl2Template = require('ng-url-to-template');
-    var output = ng2Inline('./my.compnent.ts');
+    var output = ngUrl2Template('./my.compnent.js');
 
 ### In command line
 
-    $ ngUrl2Template --outDir=dist "src/**/*.ts"
+    $ ngUrl2Template --outDir=dist "src/**/*.js"
 
 ## License
 MIT

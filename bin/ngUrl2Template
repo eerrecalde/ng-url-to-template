@@ -22,6 +22,9 @@ var baseDir = globStr.match(/([^\*]+)\*/)[1].replace(/\/$/,'');
 
 glob(globStr, function (error, fileNames) {
   fileNames.forEach(fileName => {
+    if(!fs.lstatSync(fileName).isFile()) {
+      return;
+    }
     let outputPath = fileName.replace(baseDir, outDir);
     let newContents = ngUrl2Template(fileName);
     mkdirp(path.dirname(outputPath), function (err) {
